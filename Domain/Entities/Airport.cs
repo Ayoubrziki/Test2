@@ -13,5 +13,8 @@ namespace Domain.Entities
         public int LocationId { get; set; }
 
         public virtual GPSLocation Location { get; set; }
+        public virtual IEnumerable<Flight> DepartureAirportFlights { get; set; }
+        public virtual IEnumerable<Flight> ArrivalAirportFlights { get; set; }
+
     }
 }

@@ -13,7 +13,14 @@ namespace Core.Automapper
     {
         public MappingProfile()
         {
+            //Airport
             CreateMap<Airport, AirportDtoModel>();
+            CreateMap<GPSLocation, GPSLocationDtoModel>();
+
+            //Flight
+            CreateMap<Flight, FlightDtoModel>();
+            CreateMap<FlightDtoModel, Flight>();
+
         }
     }
 }

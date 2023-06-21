@@ -15,6 +15,8 @@ namespace Persistence.Configuration
         {
             builder.ToTable(nameof(Airport));
 
+            builder.HasKey(f => f.Id);
+
             builder.Property(x => x.Name)
                 .HasMaxLength(120)
                 .IsRequired();

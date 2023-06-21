@@ -14,6 +14,8 @@ namespace Persistence.Configuration
         public void Configure(EntityTypeBuilder<GPSLocation> builder)
         {
             builder.ToTable(nameof(GPSLocation));
+
+            builder.HasKey(f => f.Id);
         }
     }
 }

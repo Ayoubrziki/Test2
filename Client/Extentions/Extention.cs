@@ -1,13 +1,6 @@
 ﻿using Business.Airoport;
 using Core.Automapper;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+using Business.Flight;
 
 namespace Web.Extentions
 {
@@ -26,6 +19,9 @@ namespace Web.Extentions
 
             //Airport Service
             services.AddTransient<IAirportService, AirportService>();
+
+            //Flight Service
+            services.AddTransient<IFlightService, FlightService>();
 
             //Add Automapper
             services.AddAutoMapper(typeof(Program), typeof(MappingProfile));

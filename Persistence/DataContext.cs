@@ -19,6 +19,7 @@ namespace Persistence
         {
             modelBuilder.ApplyConfiguration(new GPSLocationConfiguration());
             modelBuilder.ApplyConfiguration(new AirportConfiguration());
+            modelBuilder.ApplyConfiguration(new FlightConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

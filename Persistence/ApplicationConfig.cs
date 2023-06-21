@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Persistence
 {
-    public class Seed
+    public class ApplicationConfig
     {
         public static void InstallDatabaseIfNotExist(DataContext _context)
         {

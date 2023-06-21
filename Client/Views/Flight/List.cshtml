@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Domain.Dto;
+@model IList<FlightDtoModel>
+@{
+    Layout = "_Layout";
+}
+
+<a href="/Flight/Create" class="btn btn-info btn-lg">Add New</a>
+
+<table class="table">
+    <caption>List of flights</caption>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Departure Airport</th>
+            <th scope="col">Arrival Airport</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.DepartureAirport</td>
+                <td>@item.ArrivalAirport</td>
+                <td>
+                    <a href="~/Flight/Edit/@item.Id" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                    <a href="~/Flight/Delete/@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

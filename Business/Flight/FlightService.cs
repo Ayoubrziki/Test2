@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Core.Serilog;
 using Domain.Dto;
 using Domain.Entities;
 using Persistence;
+using System.Security.Cryptography;
 
 namespace Business.Flight
 {
@@ -17,38 +19,93 @@ namespace Business.Flight
             _flightRepository = flightRepository;
         }
 
-        public async Task DeleteAsync(FlightDtoModel model)
+        public async Task DeleteAsync(int pId)
         {
-            var entity = _mapper.Map<Domain.Entities.Flight>(model);
-            await _flightRepository.DeleteAsync(entity);
+            try
+            {
+                Logger.Info("Start DeleteAsync ....");
+
+                var entity = await _flightRepository.GetByIdAsync(pId);
+                await _flightRepository.DeleteAsync(entity);
+
+                Logger.Info("Flight {0} deleted successfuly.", pId);
+            }
+            catch
+            {
+                throw;
+            }
+
         }
 
         public async Task<IList<FlightDtoModel>> GetAllAsync()
         {
-            var entities = await _flightRepository.GetAllAsync();
-            var model = _mapper.Map<IList<FlightDtoModel>>(entities);
+            try
+            {
+                Logger.Info("Start GetAllAsync ....");
 
-            return model;
+                var entities = await _flightRepository.GetAllAsync();
+                var model = _mapper.Map<IList<FlightDtoModel>>(entities);
+
+                Logger.Info("Flight count in database : {0}.", entities.Count());
+                return model;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<FlightDtoModel> GetByIdAsync(int pId)
         {
-            var entity = await _flightRepository.GetByIdAsync(pId);
-            var model = _mapper.Map<FlightDtoModel>(entity);
+            try
+            {
+                Logger.Info("Start GetByIdAsync ....");
 
-            return model;
+                var entity = await _flightRepository.GetByIdAsync(pId);
+                var model = _mapper.Map<FlightDtoModel>(entity);
+
+
+                Logger.Info("Flight id in database : {0}.", model.Id);
+                return model;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task InsertAsync(FlightDtoModel model)
         {
-            var entity=_mapper.Map<Domain.Entities.Flight>(model);
-            await _flightRepository.AddAsync(entity);
+            try
+            {
+                Logger.Info("Start InsertAsync ....");
+
+                var entity = _mapper.Map<Domain.Entities.Flight>(model);
+                await _flightRepository.AddAsync(entity);
+
+                Logger.Info("Flight inserted successfuly.");
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task UpdateAsync(FlightDtoModel model)
         {
-            var entity = _mapper.Map<Domain.Entities.Flight>(model);
-            await _flightRepository.UpdateAsync(entity);
+            try
+            {
+                Logger.Info("Start UpdateAsync ....");
+
+                var entity = _mapper.Map<Domain.Entities.Flight>(model);
+                await _flightRepository.UpdateAsync(entity);
+
+                Logger.Info("Flight {0} updated successfuly.", entity.Id);
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

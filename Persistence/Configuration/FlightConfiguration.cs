@@ -28,7 +28,7 @@ namespace Persistence.Configuration
 
             builder.HasOne(x => x.ArrivalAirport)
                 .WithMany(x => x.ArrivalAirportFlights)
-                .HasForeignKey(x => x.DepartureAirportId)
+                .HasForeignKey(x => x.ArrivalAirportId)
                 .HasPrincipalKey(o => o.Id);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Serilog;
 using Domain.Dto;
 using Domain.Entities;
 using Persistence;
@@ -19,27 +20,56 @@ namespace Business.Airoport
 
         public async Task<AirportDtoModel> GetAirportByIdAsync(int pId)
         {
-            var entity = await _airportRepository.GetByIdAsync(pId);
-            var model = _mapper.Map<AirportDtoModel>(entity);
+            try
+            {
+                Logger.Info("Start GetAirportByIdAsync ....");
 
-            return model;
+                var entity = await _airportRepository.GetByIdAsync(pId);
+                var model = _mapper.Map<AirportDtoModel>(entity);
+
+                Logger.Info("Airport id in database : {0}.", model.Id);
+                return model;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public async Task<AirportDtoModel> GetAirportByIdAsync(string pCode)
+        public async Task<AirportDtoModel> GetAirportByCodeAsync(string pCode)
         {
-            var entity = await _airportRepository.FindAsync(x => x.Code.Equals(pCode, StringComparison.OrdinalIgnoreCase));
-            var model = _mapper.Map<AirportDtoModel>(entity.FirstOrDefault());
+            try
+            {
+                Logger.Info("Start GetAirportByCodeAsync ....");
 
-            return model;
+                var entity = await _airportRepository.FindAsync(x => x.Code.Equals(pCode, StringComparison.OrdinalIgnoreCase));
+                var model = _mapper.Map<AirportDtoModel>(entity.FirstOrDefault());
+
+                Logger.Info("Airport code in database : {0}.", model.Code);
+                return model;
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public async Task<IList<AirportDtoModel>> GetAllAsync()
         {
+            try
+            {
+                Logger.Info("Start GetAllAsync ....");
 
-            var entity = await _airportRepository.GetAllAsync();
-            var model = _mapper.Map<IList<AirportDtoModel>>(entity);
+                var entities = await _airportRepository.GetAllAsync();
+                var model = _mapper.Map<IList<AirportDtoModel>>(entities);
 
-            return model;
+                Logger.Info("Airport count in database : {0}.", entities.Count());
+                return model;
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

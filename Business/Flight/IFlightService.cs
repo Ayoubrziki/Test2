@@ -13,6 +13,6 @@ namespace Business.Flight
         Task<FlightDtoModel> GetByIdAsync(int pId);
         Task InsertAsync(FlightDtoModel model);
         Task UpdateAsync(FlightDtoModel model);
-        Task DeleteAsync(FlightDtoModel model);
+        Task DeleteAsync(int pId);
     }
 }

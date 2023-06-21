@@ -65,9 +65,6 @@ namespace Persistence.Migrations
                     b.Property<int?>("DepartureAirportId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartureAirportId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -75,9 +72,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartureAirportId");
+                    b.HasIndex("ArrivalAirportId");
 
-                    b.HasIndex("DepartureAirportId1");
+                    b.HasIndex("DepartureAirportId");
 
                     b.ToTable("Flight", (string)null);
                 });
@@ -116,11 +113,11 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.Airport", "ArrivalAirport")
                         .WithMany("ArrivalAirportFlights")
-                        .HasForeignKey("DepartureAirportId");
+                        .HasForeignKey("ArrivalAirportId");
 
                     b.HasOne("Domain.Entities.Airport", "DepartureAirport")
                         .WithMany("DepartureAirportFlights")
-                        .HasForeignKey("DepartureAirportId1");
+                        .HasForeignKey("DepartureAirportId");
 
                     b.Navigation("ArrivalAirport");
 

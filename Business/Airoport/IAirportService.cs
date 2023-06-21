@@ -10,7 +10,7 @@ namespace Business.Airoport
     public interface IAirportService
     {
         Task<AirportDtoModel> GetAirportByIdAsync(int pId);
-        Task<AirportDtoModel> GetAirportByIdAsync(string pCode);
+        Task<AirportDtoModel> GetAirportByCodeAsync(string pCode);
         Task<IList<AirportDtoModel>> GetAllAsync();
     }
 }

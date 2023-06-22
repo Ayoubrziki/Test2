@@ -21,11 +21,16 @@ namespace Core.Automapper
             //Flight
             CreateMap<Flight, FlightDtoModel>()
                 .ForMember(dest => dest.DepartureAirport, opt => opt.MapFrom(src => src.DepartureAirport.Name))
-                .ForMember(dest => dest.ArrivalAirport, opt => opt.MapFrom(src => src.ArrivalAirport.Name));
+                .ForMember(dest => dest.ArrivalAirport, opt => opt.MapFrom(src => src.ArrivalAirport.Name))
+                .ForMember(dest => dest.Distance, opt => opt.MapFrom(src =>
+                string.Format($"{DistanceCalculator.CalculateDistance(src.DepartureAirport.Location.Latitude,
+                src.DepartureAirport.Location.Longitude,
+                src.ArrivalAirport.Location.Latitude,
+                src.ArrivalAirport.Location.Longitude)} KM")));
 
             CreateMap<FlightDtoModel, Flight>()
-                .ForMember(dest=>dest.ArrivalAirport,opt=>opt.Ignore())
-                .ForMember(dest=>dest.DepartureAirport,opt=>opt.Ignore());
+                .ForMember(dest => dest.ArrivalAirport, opt => opt.Ignore())
+                .ForMember(dest => dest.DepartureAirport, opt => opt.Ignore());
 
         }
     }

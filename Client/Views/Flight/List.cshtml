@@ -17,6 +17,7 @@
             <th scope="col">Name</th>
             <th scope="col">Departure Airport</th>
             <th scope="col">Arrival Airport</th>
+            <th scope="col">Distance</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -28,6 +29,7 @@
                 <td>@item.Name</td>
                 <td>@item.DepartureAirport</td>
                 <td>@item.ArrivalAirport</td>
+                <td>@item.Distance</td>
                 <td>
                     <a style="display: inline-block;" href="~/Flight/Edit/@item.Id" class="btn btn-success"><i class="fa fa-edit"></i></a>
                     <form style="display: inline-block;" asp-action="Delete" asp-controller="Flight" asp-route-pFilghtId="@item.Id">

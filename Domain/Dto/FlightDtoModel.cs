@@ -22,6 +22,7 @@ namespace Domain.Dto
         public int? ArrivalAirportId { get; set; }
         public string DepartureAirport { get; set; }
         public string ArrivalAirport { get; set; }
+        public string Distance { get; set; }
 
         public IList<SelectListItem> DepartureAirports { get; set; }
         public IList<SelectListItem> ArrivalAirports { get; set; }

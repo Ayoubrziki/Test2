@@ -21,12 +21,6 @@ namespace Client.Controllers
             _flightService = flightService;
         }
 
-        public IActionResult Index()
-        {
-            return RedirectToAction("FlightList");
-        }
-
-
         public async Task<IActionResult> FlightList()
         {
             var model = await _flightService.GetAllAsync();
@@ -83,7 +77,7 @@ namespace Client.Controllers
                 return View(model);
             }
             await _flightService.InsertAsync(model);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(FlightList));
         }
 
         [HttpGet]
@@ -135,14 +129,14 @@ namespace Client.Controllers
                 return View(model);
             }
             await _flightService.UpdateAsync(model);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(FlightList));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int Id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(int pFilghtId)
         {
-            await _flightService.DeleteAsync(Id);
-            return RedirectToAction(nameof(Index));
+            await _flightService.DeleteAsync(pFilghtId);
+            return RedirectToAction(nameof(FlightList));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

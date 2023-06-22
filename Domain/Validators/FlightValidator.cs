@@ -13,8 +13,8 @@ namespace Domain.Validators
         public FlightValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Flight name cannot be empty.");
-            RuleFor(x => x.DepartureAirportId).NotEmpty().NotEqual(0).WithMessage("Select departure airport.");
-            RuleFor(x => x.ArrivalAirportId).NotEmpty().NotEqual(0).WithMessage("Select Arrival airport.");
+            RuleFor(x => x.DepartureAirportId).NotEmpty().WithMessage("Select departure airport.");
+            RuleFor(x => x.ArrivalAirportId).NotEmpty().WithMessage("Select arrival airport.");
         }
     }
 }

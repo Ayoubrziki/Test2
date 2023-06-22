@@ -12,14 +12,14 @@
         <div class="form-group">
             <label class="form-label" asp-for="DepartureAirportId"></label>
             <select class="form-select form-select-lg mb-3" asp-for="DepartureAirportId" asp-items="Model.DepartureAirports">
-                <option>Please Select</option>
+                <option value="">Please Select</option>
             </select>
             <span asp-validation-for="DepartureAirportId" style="color: red;"></span>
         </div>
             <div class="form-group">
             <label class="form-label" asp-for="ArrivalAirportId"></label>
             <select class="form-select form-select-lg mb-3" asp-for="ArrivalAirportId" asp-items="Model.ArrivalAirports">
-                <option>Please Select</option>
+                <option value="">Please Select</option>
             </select>
             <span asp-validation-for="ArrivalAirportId" style="color: red;"></span>
         </div>

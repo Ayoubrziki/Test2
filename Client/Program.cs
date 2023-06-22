@@ -32,7 +32,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Flight}/{action=Index}/{id?}");
+    pattern: "{controller=Flight}/{action=FlightList}/{id?}");
 
 using var scope = app.Services.CreateScope();
 var service = scope.ServiceProvider;
